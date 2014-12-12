@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <script type="text/x-handlebars" id="git">
+      {{#each item in model}}
+    <ul>
+        <li>{{item.url}}</li>
+        <li>{{item.user.login}}</li>
+    </ul>
+      {{/each}}
+  </script>
+
+  <script type="text/x-handlebars" id="person">
+      {{#each item in model}}
+    <ul>
+        <li>{{item.firstName}}</li>
+        <li>{{item.lastName}}</li>
+    </ul>
+      {{/each}}
+  </script>
+
+  <script type="text/x-handlebars">
+    {{outlet}}
+  </script>
+
+
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v2.0.0.js"></script>
+  <script src="js/libs/ember-1.9.0.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.12/ember-data.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
