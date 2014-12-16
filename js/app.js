@@ -10,7 +10,7 @@ var attr = DS.attr;
 
 App.Person = DS.Model.extend({
 	userName: attr('string'),
-	role: attr('string'),
+	role: attr('string', {defaultValue: 'admin'}),
 	email: attr('string')
 });
 
@@ -67,11 +67,16 @@ App.PersonRoute = Ember.Route.extend({
 App.PersonEditRoute = Ember.Route.extend({
 	model: function(params){
 		return this.store.find('person', params.id);
+	},
+	actions: {
+		update: function(){
+			console.log("Updating");
+		}
 	}
 })
 
 App.PersonEditController = Ember.Controller.extend({
-	
+
 });
 
 window.EMBER_INSPECTOR_CONFIG = null;
