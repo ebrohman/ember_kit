@@ -1,29 +1,52 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-	this.route('git');
-	this.route('person');
+	this.resource('person');
+	this.resource('workplace');
 });
 
 App.ApplicationAdapter = DS.FixtureAdapter;
 
 App.Person = DS.Model.extend({
-	firstName: DS.attr('string'),
-	lastName: DS.attr('string')
+	userName: DS.attr('string'),
+	role: DS.attr('string')
 });
 
+App.PersonController = Ember.ArrayController.extend({
+
+});
 
 App.Person.reopenClass({
 	FIXTURES: [
 		{
 			id: 1,
-			firstName: 'Eric',
-			lastName: 'Brohman'
+			userName: 'Demo1',
+			role: 'admin'
 		},
 		{
 			id: 2,
-			firstName: 'Ted',
-			lastName: 'Stevens'
+			userName: 'Demo2',
+			role: 'adminAssistant'
+		},
+		{
+			id: 3,
+			userName: 'Demo3',
+			role: 'deptHead'
+		},
+		{
+			id: 4,
+			userName: 'Demo4',
+			role: 'groupTeam',
+		},
+		{
+			id: 5,
+			userName: 'Demo5',
+			role: 'principal'
+		},
+		{
+			id: 6,
+			userName: 'Demo6',
+			role: 'teacher'
 		}
 	]
 });
@@ -31,19 +54,11 @@ App.Person.reopenClass({
 
 
 App.PersonRoute = Ember.Route.extend({
-  model: function() {
+  model: function(role) {
     return this.store.find('person');
   }
 });
 
 
-App.GitRoute = Ember.Route.extend({
-	model: function(){
-		return Ember.$.getJSON('https://api.github.com/repos/emberjs/ember.js/pulls')
-			.then(function(data){
-				return data.splice(0, 3);
-			});
-	}
-});
 
 window.EMBER_INSPECTOR_CONFIG = null;
