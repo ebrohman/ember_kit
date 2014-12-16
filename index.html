@@ -12,25 +12,17 @@
   <body class="container">
 
     <script type="text/x-handlebars">
-
-
-      <div>
-      {{#link-to 'workplace'}} 
-        <p> Workplace </p>
-      {{/link-to}}
-      </div>
-
         {{outlet}}
     </script>
 
 
-    <script type="text/x-handlebars" id="person">
+    <script type="text/x-handlebars" id="people">
         <div class="row">
           <div class="col-md-4">
               {{#each person in model}}
                 <ul>
-                    <li>{{#link-to 'person'}} {{person.userName}} {{/link-to}}</li>
-                    <li>{{person.role}}</li>
+                    <li>User Name: {{#link-to 'person' this}} {{person.userName}} {{/link-to}}</li>
+                    <li>Role: {{person.role}} </li>
                 </ul>
               {{/each}}
           </div>
@@ -77,6 +69,12 @@
             </form>
           </div>
         </div>
+    </script>
+
+    <script type="text/x-handelbars" id="person">
+      <div>
+        User Name: {{userName}}
+      </div>
     </script>
   
 
