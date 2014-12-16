@@ -64,16 +64,16 @@ App.PersonRoute = Ember.Route.extend({
   	}
 });
 
-// App.PeopleEditRoute = Ember.Route.extend({
-// 	model: function(){
-// 		return people;
-// 	}
-// })
-
-App.PersonEditController = Ember.Controller.extend({
+App.PersonEditRoute = Ember.Route.extend({
 	model: function(params){
-		return people.find(params.id);
+		return this.store.find('person', params.id);
 	}
-});
+})
+
+// App.PersonEditController = Ember.Controller.extend({
+// 	model: function(params){
+// 		return this.store.find(params.id);
+// 	}
+// });
 
 window.EMBER_INSPECTOR_CONFIG = null;
