@@ -15,13 +15,18 @@
         {{outlet}}
     </script>
 
+    <script type="text/x-handlebars" id="people/edit">
+        Showing Edit Template
+        {{model.id}}
+    </script>
+ 
 
     <script type="text/x-handlebars" id="people">
         <div class="row">
           <div class="col-md-4">
               {{#each person in model}}
                 <ul>
-                    <li>User Name: {{#link-to 'person' this}} {{person.userName}} {{/link-to}}</li>
+                    <li>User Name:{{#link-to 'people.edit' person.id}} {{person.userName}} {{/link-to}}</li>
                     <li>Role: {{person.role}} </li>
                 </ul>
               {{/each}}
@@ -67,15 +72,14 @@
                 </div>
               </div>
             </form>
+
+            {{outlet}}
           </div>
         </div>
+
+
     </script>
 
-    <script type="text/x-handelbars" id="person">
-      <div>
-        User Name: {{userName}}
-      </div>
-    </script>
   
 
   

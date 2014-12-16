@@ -1,12 +1,14 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-	this.resource('people');
-	this.resource('person', {path: '/people/:id'});
+	this.resource('people', function(){
+		this.route('edit', {path: '/edit/:id'});
+	});
 });
 
 
-var people = [
+var people = 
+	[
 		{
 			id: 1,
 			userName: 'Demo1',
@@ -43,22 +45,27 @@ var people = [
 			role: 'teacher',
 			email: 'demo1@example.com'
 		}
-	];
+	]
 
 
 
 
 App.PeopleRoute = Ember.Route.extend({
-  model: function() {
-    return people;
-  }
+	model: function() {
+   		return people;
+  	}
 });
 
-// App.PersonRoute = Ember.Route.extend({
+// App.PeopleEditRoute = Ember.Route.extend({
 // 	model: function(){
-// 		return 
+// 		return people;
 // 	}
-// });
+// })
 
+App.PeopleEditController = Ember.Controller.extend({
+	model: function(params){
+		return people.find(params.id);
+	}
+})
 
 window.EMBER_INSPECTOR_CONFIG = null;
