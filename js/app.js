@@ -70,10 +70,8 @@ App.PersonEditRoute = Ember.Route.extend({
 	}
 })
 
-// App.PersonEditController = Ember.Controller.extend({
-// 	model: function(params){
-// 		return this.store.find(params.id);
-// 	}
-// });
+App.PersonEditController = Ember.Controller.extend({
+	
+});
 
 window.EMBER_INSPECTOR_CONFIG = null;
