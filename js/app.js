@@ -1,14 +1,22 @@
 App = Ember.Application.create();
+App.ApplicationAdapter = DS.FixtureAdapter;
 
 App.Router.map(function() {
-	this.resource('people', function(){
+	this.resource('person', function(){
 		this.route('edit', {path: '/edit/:id'});
 	});
 });
+var attr = DS.attr;
+
+App.Person = DS.Model.extend({
+	userName: attr('string'),
+	role: attr('string'),
+	email: attr('string')
+});
 
 
-var people = 
-	[
+App.Person.reopenClass({
+	FIXTURES: [
 		{
 			id: 1,
 			userName: 'Demo1',
@@ -46,13 +54,13 @@ var people =
 			email: 'demo1@example.com'
 		}
 	]
+});
 
 
 
-
-App.PeopleRoute = Ember.Route.extend({
+App.PersonRoute = Ember.Route.extend({
 	model: function() {
-   		return people;
+   		return this.store.find('person');
   	}
 });
 
@@ -62,10 +70,10 @@ App.PeopleRoute = Ember.Route.extend({
 // 	}
 // })
 
-App.PeopleEditController = Ember.Controller.extend({
+App.PersonEditController = Ember.Controller.extend({
 	model: function(params){
 		return people.find(params.id);
 	}
-})
+});
 
 window.EMBER_INSPECTOR_CONFIG = null;
